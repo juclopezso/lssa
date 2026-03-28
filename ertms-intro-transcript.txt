@@ -1,0 +1,145 @@
+
+a finales del siglo XX Europa permitía
+la libre circulación de sus ciudadanos
+sin embargo los sistemas ferroviarios
+seguían formados por diferentes sistemas
+de señalización y bloqueos nacionales
+impidiendo la circulación de un mismo
+tren por diferentes países por ello la
+Unión Europea decide
+ertms un único estándar que garantice la
+interoperabilidad de las redes
+ferroviarias entre los diferentes
+estados miembros y hacer así realidad la
+circulación de trenes por toda Europa
+ertms se compone de varios subsistemas
+entre los que destaca etcs que es el que
+se encarga del control y seguridad del
+tráfico las vías de ferrocarril se
+dividen en cantones tramos de vía que
+solo puede ocupar un tren en
+circunstancias normales las señales
+verticales indican al maquinista si un
+cantón está libre ocupado o si debe
+accionar el frenado dejándose siempre al
+menos un cantón intermedio entre un tren
+y otro el sistema que controla la
+circulación señalización y desvíos es el
+enclavamiento que es un sistema ajeno a
+rtms
+etcs se compone de varios niveles
+dependiendo de cómo esté equipada la vía
+en el nivel uno las vías están equipadas
+con euroval zas que contienen
+información sobre el perfil de la vía y
+sobre la
+señalización estos datos se van
+actualizando gracias a unos dispositivos
+llamados leus que transmiten la
+información del enclavamiento a las
+valizas cuando un tren pasa sobre la
+biza recibe estos datos gracias a un
+lector que nos transmite al eubc el
+ordenador a bordo que procesa esa
+información junto a la que lleva
+preprogramada sobre las características
+del tren y envía los datos procesados al
+maquinista entre los datos que la baliza
+en vía está la autorización de
+movimiento que marca la distancia hasta
+la que puede circular el tren y la
+velocidad máxima a la que debe circular
+durante ese tramo también establece el
+punto de frenado a partir del cual si no
+se recibe una nueva autorización el tren
+debe reducir la marcha siguiendo una
+curva de frenado hasta detenerse en el
+punto de
+parada conforme el tren avanza va
+recibiendo nuevas autorizaciones de
+movimientos de las euroval zas Si en
+algún momento se rebasa la autorización
+de movimiento el euc avisa al maquinista
+Y si este no reacciona se aplica
+automáticamente el freno de servicio
+hasta volver a la velocidad permitida
+por tanto en el nivel uno se da una
+supervisión continua Aunque la
+comunicación es puntual y en una sola
+dirección por lo que las señales
+verticales son
+obligatorias para mejorar el flujo de
+datos en este nivel se introdujo el
+eurolo un cable radiante que envía los
+datos de la baliza a lo largo de la vía
+para que el tren reciba la información
+antes de pasar sobre la baliza en el
+nivel dos se siguen usando las balizas
+pero solo para confirmar la posición ya
+que la comunicación se establece
+mediante una transmisión de radio GS mrr
+el rbc centro de radio bloqueo está
+constantemente en contacto con el equipo
+embarcado y el maquinista el rbc conoce
+individualmente a cada tren que controla
+y le envía las correspondientes
+autorizaciones de movimiento en este
+nivel hay una comunicación continua yid
+dirección tren tierra por lo que no son
+necesarias las señales
+verticales digamos al nivel uno todo lo
+que le vas a decir al tren está pensado
+antes está preprogramado en el nivel dos
+como la comunicación es en tiempo real
+pues ya es una gestión más inteligente y
+sobre todo lo más importante un mensaje
+de emergencia se lo puedes enviar a un
+tren con una prescripción de que le
+llegue menos de 2 segundos y en nivel
+uno un mensaje de emergencia solo lo
+leerá un tren cu pase por encima de una
+baliza por eso en nivel dos puedes ir a
+350 km porh y en nivel 1 solo a 300 el
+nivel cero está diseñado para vías que
+no están equipadas quedando la
+comprobación de las señales
+exclusivamente bajo criterio del
+maquinista está diseñado para ser
+utilizado solamente en situaciones poco
+corrientes el tren debe estar equipado
+para poder recibir la notificación de
+transición a otro
+nivel el nivel NTC está diseñado para
+poder circular por vías equipadas con
+sistemas de supervisión nacionales como
+asfa tvm o
+lzb esto se consigue gracias al módulo
+de transmisión stm cuyo uso es opcional
+el equipo embarcado recibe las
+autorizaciones de movimiento según el
+sistema de cada país y el módulo stm se
+encarga de Traducir la información y
+presentársela al maquinista en la
+interfaz etcs el nivel de supervisión es
+equivalente al brindado por el sistema
+nacional en cuestión en el nivel tres
+que aún está en desarrollo el tren
+gracias a un sistema de posicionamiento
+por satélite como GPS o Galileo sabe en
+todo momento Dónde se encuentra y se lo
+comunica de forma continua y segura al
+centro de control por conexión radio GS
+mrr al conocer su posición y la del tren
+que le precede el equipo embarcado va
+calculando constantemente las curvas de
+frenado generando un cantón móvil
+virtual cuya longitud va cambiando
+dependiendo de la velocidad teniendo vía
+Libre hasta llegar a la trasera del tren
+anterior el nivel tres es que el tren
+informa de manera segura de su posición
+y no el enclavamiento y además sabe que
+está íntegro que no se le ha suelta un
+vagón pero empieza a estar ya presente
+haremos infraestructuras mucho más
+baratas mucho más eficientes
