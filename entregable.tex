@@ -5,7 +5,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{cite}
-\usepackage{amsmath, amsthm, amssymb, amsfonts} 
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage[mathscr]{eucal}
 \usepackage{ulem} % subrayar, tachar
 \usepackage{hyperref} % para el url
@@ -33,7 +33,7 @@
 
 %% Sets page size and margins
 \usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth= 1.5cm]{geometry}
-  
+
 \title{\textbf{Laboratorio 1 - Diseño estructural}}
 
 \author{Camilo, Juan, Omar, Juan 2, Guiselle}
@@ -42,33 +42,464 @@
 \begin{document}
 \maketitle
 
+%% ============================================================
+%% ACTIVIDAD 4.1 — ANÁLISIS ESTRUCTURAL
+%% ============================================================
 \section{Análisis Estructural}
 
-\subsection{Elementos del sistema}
-\subsubsection{Capa de Presentación}
+\subsection{Punto 1: Clasificación de componentes}
+
+\textbf{Criterio de distinción:}
+\begin{itemize}
+    \item \textbf{Software}: existe como programa ejecutable, sin forma física dedicada.
+    \item \textbf{Hardware}: dispositivo de cómputo físico dedicado con firmware/software embebido.
+    \item \textbf{Físico}: elemento que opera principalmente mediante principios mecánicos, eléctricos o electromagnéticos, sin lógica de cómputo significativa.
+\end{itemize}
+
+\subsubsection{T1 --- Presentation}
 
 \begin{table}[H]
 \centering
 \footnotesize
-\begin{tabular}{|M{0.2\textwidth}|M{0.1\textwidth}|M{0.5\textwidth}|}
- \hline
-    \textbf{Componente} & \textbf{Tipo} & \textbf{Descripción} \\
-    \hline
-    Componente 1&  Tipo & Descripción \\
-     \hline
+\begin{tabular}{|R{0.15\textwidth}|M{0.1\textwidth}|R{0.55\textwidth}|}
+\hline
+\textbf{Componente} & \textbf{Tipo} & \textbf{Justificación} \\
+\hline
+Portal & Software & Aplicación web para pasajeros --- se ejecuta como servicio de software \\
+\hline
+Dashboard & Software & Interfaz de monitoreo para operadores --- aplicación de software \\
+\hline
+Driver Interface & Hardware & Display físico instalado en la cabina del tren (DMI --- Driver Machine Interface). Es un dispositivo embebido con pantalla táctil dedicada, no una app en un navegador \\
+\hline
 \end{tabular}
 \end{table}
 
-\subsubsection{Capa de comunicación}
-\subsubsection{Capa lógica}
-\subsubsection{Capa de datos}
-\subsubsection{Capa física}
+\subsubsection{T2 --- Communication}
 
-\subsubsection{Conectores por capa}
-\subsubsection{Presentación}
-\subsection{Comu}
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.15\textwidth}|M{0.1\textwidth}|R{0.55\textwidth}|}
+\hline
+\textbf{Componente} & \textbf{Tipo} & \textbf{Justificación} \\
+\hline
+API Gateway & Software & Componente de software que enruta peticiones entre capas de presentación y lógica \\
+\hline
+\end{tabular}
+\end{table}
 
+\subsubsection{T3 --- Logic}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.15\textwidth}|M{0.1\textwidth}|R{0.55\textwidth}|}
+\hline
+\textbf{Componente} & \textbf{Tipo} & \textbf{Justificación} \\
+\hline
+passengers-ms & Software & Microservicio de dominio \\
+\hline
+routes-ms & Software & Microservicio de dominio \\
+\hline
+trains-ms & Software & Microservicio de dominio \\
+\hline
+position-time-ms & Software & Microservicio operacional \\
+\hline
+tickets-ms & Software & Microservicio operacional \\
+\hline
+MAS (Movement Authority Service) & Software & Servicio que autoriza movimiento de trenes --- lógica de negocio crítica ejecutada como software \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{T4 --- Data}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.15\textwidth}|M{0.1\textwidth}|R{0.55\textwidth}|}
+\hline
+\textbf{Componente} & \textbf{Tipo} & \textbf{Justificación} \\
+\hline
+passengers-db & Software & Base de datos \\
+\hline
+routes-db & Software & Base de datos \\
+\hline
+trains-db & Software & Base de datos \\
+\hline
+position-time-db & Software & Base de datos \\
+\hline
+tickets-db & Software & Base de datos para el microservicio tickets-ms --- almacena información de boletos/reservas \\
+\hline
+Data Lake & Software & Almacén de datos operacionales e históricos agregados \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{T5 --- Physical}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.15\textwidth}|M{0.1\textwidth}|R{0.55\textwidth}|}
+\hline
+\textbf{Componente} & \textbf{Tipo} & \textbf{Justificación} \\
+\hline
+Onboard Unit (OBU) & Hardware & Computador embarcado a bordo del tren --- dispositivo de cómputo físico dedicado (EVC --- European Vital Computer) \\
+\hline
+Train Sensor & Físico & Dispositivos físicos (odómetros, acelerómetros, radar doppler) que detectan velocidad y posición mediante principios mecánicos/eléctricos \\
+\hline
+Brake Actuator & Físico & Actuador mecánico/neumático que ejecuta el frenado sobre el tren \\
+\hline
+Balise & Físico & Transponder pasivo instalado en la vía --- dispositivo electromagnético sin capacidad de cómputo propia, se activa al paso del tren \\
+\hline
+\end{tabular}
+\end{table}
+
+%% ============================================================
+%% PUNTO 2 — CONECTORES POR TIER
+%% ============================================================
+\subsection{Punto 2: Conectores por tier}
+
+\subsubsection{T1 --- Presentation}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.18\textwidth}|R{0.2\textwidth}|R{0.32\textwidth}|M{0.14\textwidth}|}
+\hline
+\textbf{Conector} & \textbf{Componentes} & \textbf{Información} & \textbf{Dirección} \\
+\hline
+Consulta de rutas/horarios & Portal $\rightarrow$ API Gateway & Solicitudes de búsqueda de rutas, horarios y disponibilidad & Portal $\rightarrow$ API GW \\
+\hline
+Visualización de estado de trenes & API Gateway $\rightarrow$ Dashboard & Posiciones, velocidades, estados operacionales de trenes en tiempo real & API GW $\rightarrow$ Dashboard \\
+\hline
+Comandos del maquinista & Driver Interface $\leftrightarrow$ OBU (T5) & Confirmaciones de autorización de movimiento, selección de nivel ETCS, ingreso de datos del tren & Bidireccional \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{T2 --- Communication}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.18\textwidth}|R{0.2\textwidth}|R{0.32\textwidth}|M{0.14\textwidth}|}
+\hline
+\textbf{Conector} & \textbf{Componentes} & \textbf{Información} & \textbf{Dirección} \\
+\hline
+Enrutamiento de peticiones de presentación & API Gateway $\rightarrow$ Microservicios (T3) & Peticiones HTTP/REST de los clientes hacia los servicios de lógica de negocio & API GW $\rightarrow$ T3 \\
+\hline
+Respuestas de servicios & Microservicios (T3) $\rightarrow$ API Gateway & Datos de respuesta (JSON) con información de pasajeros, rutas, trenes, tickets & T3 $\rightarrow$ API GW \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{T3 --- Logic}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.18\textwidth}|R{0.2\textwidth}|R{0.32\textwidth}|M{0.14\textwidth}|}
+\hline
+\textbf{Conector} & \textbf{Componentes} & \textbf{Información} & \textbf{Dirección} \\
+\hline
+Consulta de posición para autorización & position-time-ms $\rightarrow$ MAS & Datos de posición y tiempo de trenes para calcular autorizaciones de movimiento & pos-time $\rightarrow$ MAS \\
+\hline
+Validación de tren en ruta & trains-ms $\rightarrow$ routes-ms & Datos del tren (características, capacidades) para validar compatibilidad con una ruta asignada & trains $\rightarrow$ routes \\
+\hline
+Emisión de autorización de movimiento & MAS $\rightarrow$ OBU (T5) & Movement Authority: distancia permitida, velocidad máxima, punto de frenado & MAS $\rightarrow$ OBU \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{T4 --- Data}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.18\textwidth}|R{0.2\textwidth}|R{0.32\textwidth}|M{0.14\textwidth}|}
+\hline
+\textbf{Conector} & \textbf{Componentes} & \textbf{Información} & \textbf{Dirección} \\
+\hline
+Lectura/escritura de datos de dominio & Microservicios (T3) $\leftrightarrow$ Bases de datos (T4) & Operaciones CRUD sobre datos de pasajeros, rutas, trenes, tickets & Bidireccional \\
+\hline
+Ingesta al Data Lake & Bases de datos (T4) $\rightarrow$ Data Lake & Datos históricos y operacionales agregados para análisis & DBs $\rightarrow$ Data Lake \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{T5 --- Physical}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.18\textwidth}|R{0.2\textwidth}|R{0.32\textwidth}|M{0.14\textwidth}|}
+\hline
+\textbf{Conector} & \textbf{Componentes} & \textbf{Información} & \textbf{Dirección} \\
+\hline
+Telemetría de sensores & Train Sensor $\rightarrow$ OBU & Velocidad, posición, aceleración, estado de ruedas & Sensor $\rightarrow$ OBU \\
+\hline
+Comando de frenado & OBU $\rightarrow$ Brake Actuator & Órdenes de frenado (servicio o emergencia) calculadas por el EVC & OBU $\rightarrow$ Brake \\
+\hline
+Lectura de baliza & Balise $\rightarrow$ OBU & Perfil de vía, autorización de movimiento, información de señalización & Balise $\rightarrow$ OBU \\
+\hline
+\end{tabular}
+\end{table}
+
+%% ============================================================
+%% PUNTO 3 — CONEXIÓN ENTRE CAPAS
+%% ============================================================
+\subsection{Punto 3: Conexión entre capas}
+
+Los conectores intranivel, como la comunicación entre microservicios en la capa lógica (T$_3$), implican un alto grado de interacción horizontal, lo que incrementa la complejidad del sistema debido a la necesidad de coordinación, consistencia de datos y manejo de fallos distribuidos.
+
+Por otro lado, los conectores internivel, como la interacción entre la capa de presentación (T$_1$), comunicación (T$_2$) y lógica (T$_3$), reflejan una arquitectura en capas que favorece la separación de responsabilidades, la mantenibilidad y la escalabilidad. Sin embargo, estos conectores también pueden introducir latencia y puntos críticos de fallo, como el API Gateway.
+
+En el caso de sistemas críticos, los conectores internivel entre la lógica (T$_3$) y el sistema físico (T$_5$) implican requisitos estrictos de confiabilidad, disponibilidad y tiempo real, ya que afectan directamente la operación segura del sistema.
+
+\subsubsection{Conectores intra-tier (dentro del mismo nivel)}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|M{0.05\textwidth}|R{0.22\textwidth}|R{0.35\textwidth}|M{0.15\textwidth}|}
+\hline
+\textbf{Tier} & \textbf{Conector} & \textbf{Componentes} & \textbf{Tipo} \\
+\hline
+T1 & Sincronización de estado operacional & Dashboard $\leftrightarrow$ Driver Interface (vía OBU) & Intra-tier (indirecta) \\
+\hline
+T3 & Coordinación entre microservicios & passengers-ms $\leftrightarrow$ tickets-ms & Intra-tier \\
+\hline
+T3 & Consulta de posición para autorización & position-time-ms $\rightarrow$ MAS & Intra-tier \\
+\hline
+T3 & Validación de tren en ruta & trains-ms $\rightarrow$ routes-ms & Intra-tier \\
+\hline
+T4 & Ingesta al Data Lake & Bases de datos $\rightarrow$ Data Lake & Intra-tier \\
+\hline
+T5 & Telemetría de sensores & Train Sensor $\rightarrow$ OBU & Intra-tier \\
+\hline
+T5 & Comando de frenado & OBU $\rightarrow$ Brake Actuator & Intra-tier \\
+\hline
+T5 & Lectura de baliza & Balise $\rightarrow$ OBU & Intra-tier \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Conectores cross-tier (entre niveles)}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.18\textwidth}|R{0.28\textwidth}|M{0.12\textwidth}|M{0.12\textwidth}|}
+\hline
+\textbf{Conector} & \textbf{Componentes} & \textbf{Tiers} & \textbf{Tipo} \\
+\hline
+Peticiones de usuario & Portal / Dashboard (T1) $\rightarrow$ API Gateway (T2) & T1 $\rightarrow$ T2 & Cross-tier \\
+\hline
+Enrutamiento a servicios & API Gateway (T2) $\rightarrow$ Microservicios (T3) & T2 $\rightarrow$ T3 & Cross-tier \\
+\hline
+Persistencia de datos & Microservicios (T3) $\leftrightarrow$ Bases de datos (T4) & T3 $\leftrightarrow$ T4 & Cross-tier \\
+\hline
+Emisión de Movement Authority & MAS (T3) $\rightarrow$ OBU (T5) & T3 $\rightarrow$ T5 & Cross-tier \\
+\hline
+Reporte de posición & OBU (T5) $\rightarrow$ position-time-ms (T3) & T5 $\rightarrow$ T3 & Cross-tier \\
+\hline
+Interfaz del maquinista & Driver Interface (T1) $\leftrightarrow$ OBU (T5) & T1 $\leftrightarrow$ T5 & Cross-tier \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Implicaciones arquitectónicas}
+
+\paragraph{Intra-tier}
+\begin{itemize}
+    \item \textbf{Determinismo}: los componentes dentro de T5 (sensores, OBU, actuadores) deben operar con tiempos de respuesta deterministas para garantizar la seguridad --- un retraso en la orden de frenado puede ser catastrófico.
+    \item \textbf{Autonomía de supervivencia}: el tren (T5) puede operarse autónomamente en caso de fallo de conexión con capas superiores. El OBU tiene lógica suficiente para aplicar frenado de emergencia y mantener operación segura sin depender de T3.
+    \item \textbf{Cohesión y confianza}: los componentes dentro de un mismo tier comparten un nivel de confianza alto. En T5, el OBU confía en los datos del Train Sensor sin necesidad de validación externa. En T3, los microservicios se comunican dentro de una misma red de confianza.
+\end{itemize}
+
+\paragraph{Cross-tier}
+\begin{itemize}
+    \item \textbf{Resiliencia}: la arquitectura en capas permite que el sistema continúe operando ante fallos parciales. Si T1 (presentación) falla, los trenes siguen operando. Si la comunicación T3$\rightarrow$T5 se pierde, el OBU aplica políticas de seguridad autónomas.
+    \item \textbf{Fronteras de seguridad --- Zero Trust}: cada cruce entre tiers constituye una frontera de seguridad. La comunicación T3$\leftrightarrow$T5 (MAS $\rightarrow$ OBU) requiere cifrado, autenticación mutua y verificación de integridad. No se asume confianza implícita entre capas.
+    \item \textbf{Protocolos de comunicación}: cada frontera cross-tier puede usar protocolos distintos --- HTTP/REST entre T1-T2-T3, protocolos de base de datos entre T3-T4, y GSM-R/Euroradio con protocolos seguros entre T3-T5.
+    \item \textbf{Escalabilidad}: la separación en tiers permite escalar cada capa de forma independiente. T3 puede escalar horizontalmente (más instancias de microservicios) sin afectar T5, y T4 puede replicar bases de datos sin modificar T3.
+\end{itemize}
+
+%% ============================================================
+%% PUNTO 4 — COMPONENTES FALTANTES
+%% ============================================================
+\subsection{Punto 4: Componentes incompletos o faltantes}
+
+\subsubsection{T1 --- Presentation}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.18\textwidth}|M{0.1\textwidth}|R{0.52\textwidth}|}
+\hline
+\textbf{Componente faltante} & \textbf{Tipo} & \textbf{Justificación} \\
+\hline
+Mobile App & Software & Aplicación móvil para pasajeros --- compra de tickets, consulta de horarios, notificaciones en tiempo real \\
+\hline
+Maintenance Console & Software & Interfaz para equipos de mantenimiento --- gestión de alertas, programación de intervenciones sobre trenes y vía \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{T2 --- Communication}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.18\textwidth}|M{0.1\textwidth}|R{0.52\textwidth}|}
+\hline
+\textbf{Componente faltante} & \textbf{Tipo} & \textbf{Justificación} \\
+\hline
+Message Broker / Event Bus & Software & Middleware de mensajería asíncrona (ej. Kafka, RabbitMQ) para desacoplar microservicios en T3 y permitir comunicación basada en eventos \\
+\hline
+GSM-R Gateway & Hardware & Punto de entrada a la red de radio ferroviaria GSM-R --- traduce comunicación entre el mundo IP (T3) y el protocolo Euroradio hacia los trenes (T5) \\
+\hline
+Load Balancer & Software & Distribuye tráfico entre instancias de microservicios para garantizar disponibilidad y escalabilidad \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{T3 --- Logic}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.18\textwidth}|M{0.1\textwidth}|R{0.52\textwidth}|}
+\hline
+\textbf{Componente faltante} & \textbf{Tipo} & \textbf{Justificación} \\
+\hline
+alerts-ms & Software & Microservicio de alertas y notificaciones --- gestión de alarmas operacionales, incidentes y emergencias \\
+\hline
+scheduling-ms & Software & Microservicio de planificación --- gestión de horarios, asignación de trenes a rutas, planificación de turnos \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{T4 --- Data}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.18\textwidth}|M{0.1\textwidth}|R{0.52\textwidth}|}
+\hline
+\textbf{Componente faltante} & \textbf{Tipo} & \textbf{Justificación} \\
+\hline
+tickets-db & Software & Base de datos del microservicio tickets-ms --- almacena información de boletos/reservas \\
+\hline
+alerts-db & Software & Base de datos para persistir alertas, incidentes y su historial de resolución \\
+\hline
+Event Store & Software & Registro inmutable de eventos del sistema --- necesario para auditoría, trazabilidad y reconstrucción de estado en un sistema crítico de seguridad \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{T5 --- Physical}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.18\textwidth}|M{0.1\textwidth}|R{0.52\textwidth}|}
+\hline
+\textbf{Componente faltante} & \textbf{Tipo} & \textbf{Justificación} \\
+\hline
+Onboard Radio Unit & Hardware & Equipo de radio GSM-R embarcado en el tren --- necesario para la comunicación bidireccional en ETCS Nivel 2 y 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+%% ============================================================
+%% ACTIVIDAD 4.2 — VISTA C&C
+%% ============================================================
 \section{Vista de C\&C}
 
+% TODO: Diagrama C&C pendiente
+
+%% ============================================================
+%% ACTIVIDAD 4.3 — REFLEXIÓN
+%% ============================================================
 \section{Reflexión}
+
+\subsection{Punto 1: Complejidad arquitectónica por tier}
+
+La capa que concentra la mayor complejidad arquitectónica es \textbf{T3 --- Logic}.
+
+\subsubsection{Evidencia cuantitativa}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.2\textwidth}|M{0.2\textwidth}|M{0.18\textwidth}|M{0.22\textwidth}|}
+\hline
+\textbf{Tier} & \textbf{Componentes (ref + propuestos)} & \textbf{Conectores intra-tier} & \textbf{Conectores cross-tier} \\
+\hline
+T1 --- Presentation & 3 + 2 = 5 & 1 & 3 ($\rightarrow$T2, $\leftrightarrow$T5) \\
+\hline
+T2 --- Communication & 1 + 3 = 4 & 0 & 2 ($\leftarrow$T1, $\rightarrow$T3) \\
+\hline
+\textbf{T3 --- Logic} & \textbf{6 + 2 = 8} & \textbf{3} & \textbf{4 ($\leftarrow$T2, $\leftrightarrow$T4, $\rightarrow$T5, $\leftarrow$T5)} \\
+\hline
+T4 --- Data & 5 + 3 = 8 & 1 & 1 ($\leftrightarrow$T3) \\
+\hline
+T5 --- Physical & 4 + 1 = 5 & 3 & 3 ($\leftrightarrow$T1, $\leftarrow$T3, $\rightarrow$T3) \\
+\hline
+\end{tabular}
+\end{table}
+
+Aunque T4 iguala en cantidad de componentes, sus elementos son pasivos (bases de datos, almacenes). T3, en cambio, concentra la mayor cantidad de \textbf{conectores activos}: coordina microservicios entre sí (intra-tier), recibe peticiones de T2, persiste en T4, y emite/recibe información crítica de seguridad hacia/desde T5.
+
+\subsubsection{Qué revela sobre las prioridades de diseño}
+
+\begin{enumerate}
+    \item \textbf{Centralidad de la lógica de negocio}: el sistema prioriza la separación de dominios funcionales (pasajeros, rutas, trenes, tickets, posición-tiempo) en servicios independientes dentro de T3, lo que favorece la mantenibilidad y la escalabilidad horizontal, pero a costa de mayor complejidad en la coordinación.
+
+    \item \textbf{Seguridad como driver arquitectónico}: la presencia del MAS (Movement Authority Service) en T3 --- con conexiones directas a T5 --- muestra que la lógica de autorización de movimiento se diseñó como un servicio de software centralizado que media entre el mundo digital y el físico. Esto permite aplicar validaciones, auditoría y control de acceso en un solo punto, pero convierte a T3 en el tier más crítico del sistema.
+
+    \item \textbf{Trade-off explícito}: mayor complejidad en T3 reduce la complejidad en los demás tiers. T1 se limita a presentar, T2 a enrutar, T4 a persistir y T5 a ejecutar. Esta decisión arquitectónica refleja el patrón de \textbf{``smart services, thin layers''}, donde la inteligencia del sistema se concentra deliberadamente en la capa lógica.
+\end{enumerate}
+
+\subsection{Punto 2: Disponibilidad crítica en la vista C\&C}
+
+La disponibilidad es más crítica en dos puntos del sistema: el \textbf{conector cross-tier T3$\leftrightarrow$T5} (MAS $\rightarrow$ OBU / OBU $\rightarrow$ position-time-ms) y el \textbf{Onboard Unit (OBU)} en T5.
+
+\subsubsection{Por qué estos puntos son los más críticos}
+
+\begin{itemize}
+    \item \textbf{MAS $\rightarrow$ OBU (Movement Authority)}: si este canal se pierde, el tren deja de recibir autorizaciones de movimiento. En ETCS Nivel 2, donde la comunicación radio GSM-R es continua, una interrupción obliga al tren a aplicar frenado de emergencia al agotar la última autorización recibida. Una indisponibilidad prolongada de este conector detiene el tráfico ferroviario completo en el corredor afectado.
+    \item \textbf{OBU $\rightarrow$ position-time-ms (reporte de posición)}: si el centro de control pierde la posición de un tren, no puede emitir nuevas autorizaciones ni para ese tren ni para los adyacentes, ya que no puede garantizar que los cantones estén libres. El efecto se propaga en cascada.
+    \item \textbf{OBU como nodo crítico}: es el único componente que conecta el mundo físico (sensores, actuadores, balizas) con el mundo lógico (MAS, position-time-ms). Si el OBU falla, se pierde simultáneamente la supervisión, el frenado automático y la comunicación --- el tren queda sin protección ETCS.
+\end{itemize}
+
+\subsubsection{Cómo la arquitectura aborda (o no) la disponibilidad}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|R{0.16\textwidth}|M{0.14\textwidth}|R{0.5\textwidth}|}
+\hline
+\textbf{Mecanismo} & \textbf{Presente} & \textbf{Observación} \\
+\hline
+Autonomía del OBU & Sí & En caso de pérdida de comunicación con T3, el OBU aplica políticas de seguridad autónomas (frenado de emergencia). Esto es \textit{fail-safe}, no \textit{fail-operational}: el tren se detiene, pero no sigue operando \\
+\hline
+Redundancia del OBU & No visible & En implementaciones reales ERTMS, el EVC es un sistema redundante 2oo3 (two-out-of-three). La vista de referencia no modela esta redundancia interna \\
+\hline
+Redundancia del MAS & No visible & No se modela replicación de instancias del MAS ni failover. Un fallo del MAS es un punto único de falla para todo el corredor \\
+\hline
+Comunicación dual GSM-R & No visible & El estándar ERTMS especifica dos canales de radio independientes, pero la vista C\&C actual modela un solo conector T3$\leftrightarrow$T5 \\
+\hline
+API Gateway como SPOF & Parcialmente abordado & Se identificó un Load Balancer en componentes faltantes (T2), pero el API Gateway sigue siendo un punto único para toda la comunicación T1$\rightarrow$T3 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Conclusión}
+
+La arquitectura aplica un enfoque \textbf{fail-safe} en T5 (el tren se detiene ante falta de información), pero la vista C\&C actual no refleja mecanismos de \textbf{alta disponibilidad} como redundancia del MAS, replicación de canales de radio o failover entre instancias de microservicios. Esto no significa que ERTMS carezca de estos mecanismos --- existen en la especificación real --- sino que la vista C\&C de referencia los omite, lo que representa una oportunidad de mejora en el modelo.
+
 \end{document}
