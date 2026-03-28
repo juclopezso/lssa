@@ -1,0 +1,74 @@
+\documentclass[a4paper, 10 pt]{article}
+
+%% Language and font encodings
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{cite}
+\usepackage{amsmath, amsthm, amssymb, amsfonts} 
+\usepackage[mathscr]{eucal}
+\usepackage{ulem} % subrayar, tachar
+\usepackage{hyperref} % para el url
+\usepackage{multirow, array} % para las tablas
+\usepackage{float} % para tablas [H]
+\usepackage{graphicx} % graficos
+\usepackage{titlesec} %subsubsubsection
+\usepackage[usenames]{color} %palabras con color
+\usepackage{lscape} % texto horizontal
+\usepackage{pdflscape} % hoja horizontal
+\usepackage{booktabs} %tabla con puntos
+\usepackage{longtable}
+\usepackage{url}
+
+% Break long url
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+% For creating tables
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{L}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth= 1.5cm]{geometry}
+  
+\title{\textbf{Laboratorio 1 - Diseño estructural}}
+
+\author{Camilo, Juan, Omar, Juan 2, Guiselle}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Análisis Estructural}
+
+\subsection{Elementos del sistema}
+\subsubsection{Capa de Presentación}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|M{0.2\textwidth}|M{0.1\textwidth}|M{0.5\textwidth}|}
+ \hline
+    \textbf{Componente} & \textbf{Tipo} & \textbf{Descripción} \\
+    \hline
+    Componente 1&  Tipo & Descripción \\
+     \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Capa de comunicación}
+\subsubsection{Capa lógica}
+\subsubsection{Capa de datos}
+\subsubsection{Capa física}
+
+\subsubsection{Conectores por capa}
+\subsubsection{Presentación}
+\subsection{Comu}
+
+\section{Vista de C\&C}
+
+\section{Reflexión}
+\end{document}
